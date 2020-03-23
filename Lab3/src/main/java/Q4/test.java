@@ -19,19 +19,17 @@ public class test{
         Scanner s = new Scanner(System.in);
         
         // Why use recursion when there is a feature for this?
-        Date today = new Date(); 
         SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy");
         SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE");
-        String day = dayFormat.format(today);
+        Calendar cal = Calendar.getInstance();
+        String day = dayFormat.format(cal.getTime());
 //        System.out.println("Today Date (dd/mm/yyyy): " + sdf.format(today));
 //        System.out.println("Today is on " + day);
         // Why use recursion when there is a feature for this? */
         
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(today);
         int dayInNumeric = cal.get(Calendar.DAY_OF_WEEK) - 1;
         
-        String todayDate = sdf.format(today);
+        String todayDate = sdf.format(cal.getTime());
         String passDate = "20/8/2015";
         System.out.println("Today Date (dd/mm/yyyy): " + todayDate);
         System.out.println("Today is on " + day);
