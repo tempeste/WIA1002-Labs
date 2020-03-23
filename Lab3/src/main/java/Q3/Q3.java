@@ -22,7 +22,7 @@ public class Q3 {
         for(int i = 0; i < num; i++){
             arr[i] = rand.nextInt(10);
         }
-        //idea is similar to alpha beta pruning, when swapping between numbers, check whether if the number is the same, if same, ignore
+        
         permute(arr, 0, num-1);
     }
     
@@ -32,6 +32,7 @@ public class Q3 {
         }else{
             for(int i = first ; i <= end; i ++){
                  swap(arr, first, i);
+                 //idea is similar to alpha beta pruning, when swapping between numbers, check whether if the number is the same, if same, ignore
                  if(!(arr[first] == arr[i] && i != first)){
                      permute(arr, (first+1), end);
                  }
