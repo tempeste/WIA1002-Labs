@@ -169,7 +169,7 @@ public class LinkedList <T extends Comparable<T>>{
     public void set(int index, T a){
         if (index == 0){
             setFront(a);
-        }else if(index == this.length()){
+        }else if(index == this.length() -1){
             setBack(a);
         }else if(index >= this.length()){
             System.out.println("Invalid index. Update failed");
@@ -235,6 +235,46 @@ public class LinkedList <T extends Comparable<T>>{
             
             previous.setLink(newNode);
             newNode.setLink(current);
+        }
+    }
+    
+    public T getFront(){
+        if(head != null){
+            return (T) head.getData();
+            
+        }else{
+            System.out.println("The list is empty.");
+            return null;
+        }
+    }
+    
+    public T getBack(){
+        if(head != null){
+            ListNode<T> current = head;
+            while(current.getLink() != null){
+                current = current.getLink();
+            }
+            return current.getData();
+        }else{
+            System.out.println("The list is empty. Invalid update");
+            return null;
+        }
+    }
+    
+    public T get(int index){
+        if (index == 0){
+            return getFront();
+        }else if(index == this.length()-1){
+            return getBack();
+        }else if(index >= this.length()){
+            System.out.println("Invalid index.");
+            return null;
+        }else{
+            ListNode current = head;
+            for(int i = 0; i < index; i++){
+                current= current.getLink();
+            }
+            return (T) current.getData();
         }
     }
 }
