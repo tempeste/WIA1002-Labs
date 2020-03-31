@@ -104,43 +104,47 @@ public class LinkedList <T extends Comparable<T>>{
         return found;
     }
     
-    public void addNode(int index, T a){
+     public void addNode(int index, T a){
+        ListNode newNode = new ListNode<T>(a, null);
+        ListNode current = head;
         if(index == 0){
-            this.addFrontNode(a);
+            addFrontNode(a);
         }else if(index == this.length()){
-            this.addNode(a);
-        }else if( index > this.length()){
+            addNode(a);
+        }else if(index > this.length()){
             System.out.println("Invalid index. No node inserted");
         }else{
-            ListNode newNode = new ListNode<T>(a, null);
-            ListNode current = head;
-            for(int i = 0; i < index; i++){
+            for(int i = 1; i < index; i++){
                 current = current.getLink();
             }
-            ListNode temp = current;
-            current = newNode;
-            current.setLink(temp);
+            ListNode temp = current.getLink();
+            current.setLink(newNode);
+            newNode.setLink(temp);
         }
     }
     
     public void deleteNode(int index){
-        if(index == 0){
-            this.deleteFrontNode();
-        }else if(index == this.length()){
-            this.deleteNode();
-        }else if( index > this.length()){
-            System.out.println("Invalid index. No node inserted");
-        }else{
-            ListNode current = head;
-            ListNode previous = head;
-            for(int i = 0 ; i < index; i++){
-                previous = current;
-                current = current.getLink();
+        if(head != null){
+            if(index == this.length()){
+                deleteNode();
+            }else if(index == 0){
+                deleteFrontNode();
+            }else if(index > this.length()){
+                System.out.println("Invalid index. No node deleted ");
+            }else{
+                ListNode current = head;
+                ListNode previous = head;
+                for(int i = 1; i < index; i++){
+                    previous = current;
+                    current = current.getLink();
+                }
+                ListNode temp = current.getLink();
+                previous.setLink(temp);
+                current.setLink(null);
             }
-            
-            previous.setLink(current.getLink());
-            current = null;
-            
+           
+        }else{
+             System.out.println("The list is empty, invalid update");
         }
     }
     

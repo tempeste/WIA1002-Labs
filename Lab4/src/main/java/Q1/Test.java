@@ -43,6 +43,8 @@ public class Test {
         System.out.println("Inserting the random numbers in sorted order:");
         System.out.println(list.toString());
         System.out.println("");
-        list.clear();
+        
+        list.addNode(3, 5);
+        System.out.println(list);
     }
 }

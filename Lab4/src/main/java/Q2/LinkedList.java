@@ -120,7 +120,7 @@ public class LinkedList<T extends Comparable<T>> {
         }else if(index > this.length()){
             System.out.println("Invalid index. No node inserted");
         }else{
-            for(int i = 0; i < index; i++){
+            for(int i = 1; i < index; i++){
                 current = current.getLink();
             }
             ListNode temp = current.getLink();
@@ -140,7 +140,7 @@ public class LinkedList<T extends Comparable<T>> {
             }else{
                 ListNode current = head;
                 ListNode previous = head;
-                for(int i = 0; i < index; i++){
+                for(int i = 1; i < index; i++){
                     previous = current;
                     current = current.getLink();
                 }
@@ -241,10 +241,153 @@ public class LinkedList<T extends Comparable<T>> {
         }
     }
     
+    //Not the implementation that the question desires, also, there's a bug in which the original linked list is not modified due to the way Java passes reference values
+    
 //    public LinkedList splitList(){
 //        LinkedList<T> second = new LinkedList<T>();
-//        for(int i = 0; i < this.length(); i++){
+//        int length = this.length();
+//        ListNode current = head;
+//        if(length %2 == 0){
+//            for(int i = 0; i < this.length(); i++){ 
+//                if( i >= length/2){
+//                    second.addNode((T) current.getData());
+//                }
+//                current = current.getLink();
+//            }
 //            
+//            
+//        }else{
+//            for(int i = 0; i < this.length(); i++){
+//                if( i > length/2){
+//                    second.addNode((T) current.getData());
+//                }
+//                current = current.getLink();
+//            }
 //        }
+//        
+//        if(length%2 == 0){
+//            for(int i = 0; i < length/2; i++){
+//                deleteNode();
+//                System.out.println("Deletion of " + i + "th item" + this.toString());
+//            }
+//        }else{
+//            for(int i = 0; i < length/2 -1; i++){
+//                
+//                deleteNode();
+//                System.out.println("Deletion of " + i + "th item" + this.toString());
+//            }
+//        }
+//        return second;
 //    }
+    
+    public void splitList(LinkedList first, LinkedList second){
+        int length = this.length();
+        ListNode current = head;
+        if(length %2 == 0){
+            for(int i = 0; i < this.length(); i++){ 
+                if( i >= length/2){
+                    second.addNode((T) current.getData());
+                }else{
+                    first.addNode((T)current.getData());
+                }
+                current = current.getLink();
+            }
+            
+            
+        }else{
+            for(int i = 0; i < this.length(); i++){
+                if( i > length/2){
+                    second.addNode((T) current.getData());
+                }else{
+                    first.addNode((T)current.getData());
+                }
+                current = current.getLink();
+            }
+        }
+    }
+    
+    public void alternateList(LinkedList first , LinkedList second){
+        int length = this.length();
+        ListNode current = head;
+        for(int i = 0; i < length; i++){
+            if(i % 2 == 0){
+                first.addNode((T)current.getData());
+            }else{
+                second.addNode((T) current.getData());
+            }
+            current = current.getLink();
+        }
+    }
+    
+    public void mergeList(LinkedList second){
+        int length = second.length();
+
+        for(int i = 0, j = 1; i < length; i++, j+= 2){   
+            this.addNode(j, (T) second.get(i));
+        }
+    }
+    
+    public void reverseList(){
+        head = reverse(head);
+    }
+    
+    public ListNode reverse(ListNode node){
+        if (node == null){
+            return null;
+        }
+        
+        if(node.getLink() == null){
+            return node;
+        }
+        
+        ListNode second = node.getLink();
+        node.setLink(null);
+        
+        ListNode reverseOthers = reverse(second);
+        second.setLink(node);
+        
+        return reverseOthers;
+        
+    }
+    
+    public ListNode getHead(){
+        return head;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//    public ListNode reverse(ListNode list){
+//        if (list == null) return null; 
+//
+//        if (list.getLink() == null) return list; 
+//
+//        ListNode secondElem = list.getLink();
+//
+//        list.setLink(null);
+//
+//        ListNode reverseRest = reverse(secondElem);
+//
+//        secondElem.setLink(list);
+//
+//        return reverseRest;
+//    }
+    
+    
 }
