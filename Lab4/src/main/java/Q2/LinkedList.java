@@ -130,27 +130,21 @@ public class LinkedList<T extends Comparable<T>> {
     }
     
     public void deleteNode(int index){
-        if(head != null){
-            if(index == this.length()){
-                deleteNode();
-            }else if(index == 0){
-                deleteFrontNode();
-            }else if(index > this.length()){
-                System.out.println("Invalid index. No node deleted ");
-            }else{
-                ListNode current = head;
-                ListNode previous = head;
-                for(int i = 1; i < index; i++){
-                    previous = current;
-                    current = current.getLink();
-                }
-                ListNode temp = current.getLink();
-                previous.setLink(temp);
-                current.setLink(null);
-            }
-           
+        int length = this.length();
+        if(index == 0){
+            deleteFrontNode();
+        }else if(index == length-1){
+            deleteNode();
+        }else if (index >= length){
+            System.out.println("Invalid index.");
         }else{
-             System.out.println("The list is empty, invalid update");
+            ListNode current = head;
+            for(int i = 1; i < length; i ++){
+                current = current.getLink();
+            }
+            ListNode temp = current.getLink().getLink();
+            current.getLink().setLink(null);
+            current.setLink(temp);
         }
     }
     
