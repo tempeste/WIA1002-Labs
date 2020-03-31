@@ -101,6 +101,8 @@ public class Q2 {
         
         char Start = (char) list.get(start);
         char End = (char) list.get(end);
+        list.set(start, End);
+        list.set(end, Start);
         return reverseList2(list, start+1, end -1);
 
     }
