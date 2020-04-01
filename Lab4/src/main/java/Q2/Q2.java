@@ -62,7 +62,6 @@ public class Q2 {
         
         System.out.println("Reverse the list. Recursive in tester class3");
         list = reverseList2(list, 0, list.length()-1);
-        list.deleteFrontNode();
         System.out.println(list);
         
         
