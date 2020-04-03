@@ -44,7 +44,12 @@ public class CircularLinkedList<T> {
         if(head == null){
             head = newNode;
         }else{
-            tail.setLink(newNode);
+//            if(head.getLink() == head){
+//                head.setLink(newNode);
+//                tail = newNode;               //trying out another way of doing it(not necessary)
+//            }else{
+                tail.setLink(newNode);
+            //}
         }
         tail = newNode;
         tail.setLink(head);
