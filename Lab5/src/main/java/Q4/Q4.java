@@ -35,30 +35,18 @@ public class Q4 {
                     break;
                 }else if(exp.charAt(i)!= closing.peek()){
                     spaces = i;
-                    boolean miss = false;
-                    while(!starting.isEmpty()){
-                        char temp = starting.pop();
-                        if(temp == complement(exp.charAt(i))){
-                            miss = true;
-                            missing = true;
-                            wrongSign = closing.pop();
-                            break;
-                        }
-                    }
-                    if(!miss){
-                        extra = true;
-                        wrongSign = exp.charAt(i);
-                    }
-                    break;
-                }else if(!starting.isEmpty() && i == exp.length()-1){
-                    spaces = exp.length()-1;
                     missing = true;
-                    wrongSign = complement(starting.pop());
+                    wrongSign = closing.pop();
                     break;
                 }else{
                     closing.pop();
                     starting.pop();
                 }
+            }else if(!starting.isEmpty() && i == exp.length()-1){
+                spaces = exp.length()-1;
+                missing = true;
+                wrongSign = complement(starting.pop());
+                break;
             }
             
         }

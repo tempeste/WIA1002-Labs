@@ -14,15 +14,15 @@ import java.io.FileInputStream;
  */
 public class Q5 {
     public static void main(String[] args) {
+        String input = "";
         try{
             Scanner sc = new Scanner(new FileInputStream("text.xml"));
-            String input = "";
             do{
                 input += sc.nextLine();
                 input += "\n";
             }while(sc.hasNextLine());
-            sc.close("Contents of XML file");
-            System.out.println("");
+            sc.close();
+            System.out.println("Contents of XML file");
             System.out.println(input);
         }catch(FileNotFoundException e){
             System.out.println("File Not Found");
