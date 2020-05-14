@@ -21,42 +21,31 @@ public class Q3 {
         int current = 0;
         int[] arr = new int[n];
         int solution =0;
-        boolean valid = false;
         while (true){
-            valid = false;
-            for(int i = current; i < n ; i++){
-                int size = stack.getSize();
-                if(size < n){ //cause without this if statement, check() might check size n
-                    //which will result in array out of bounds
-                    if(check(arr, stack , i)){
-                        stack.push(i);
-                        arr[stack.getSize()-1] = i;
-                        current = 0;
-                        valid = true;
-                    }
-                }
-                
-            }
-            
-            if(!valid){
-                if(stack.isEmpty()){
-                    break;
-                }else{
-                    current = stack.pop();
-                    current += 1;
-                }
-            }else if(stack.getSize() == n){
-                {
-                    for(int i = n-1; i >= 0; i--)
-                    {
-                        arr[i] = stack.pop();
-                    }
-                    display(arr);
-                    current = arr[0];
-                    current += 1;
-                    solution ++;
+            while (current < n) {
+                if (check(arr, stack, current)) {
+                    stack.push(current);
+                    arr[stack.getSize() - 1] = current;
+                    current = 0;
+                } else {
+                    current++;
                 }
             }
+
+            if (stack.getSize() == n) {
+                display(arr);
+                solution++;
+            }
+
+            if (stack.isEmpty()) {
+                break;
+            }
+
+            if (stack.peek() == n) {
+                stack.pop();
+            }
+
+            current = stack.pop() + 1;
             
         }
         System.out.println("Number of solutions: "+ solution);
