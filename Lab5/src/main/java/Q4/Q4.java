@@ -28,36 +28,39 @@ public class Q4 {
             }else if(isStart(exp.charAt(i), closing)){
                 starting.push(exp.charAt(i));
             }else if(isClose(exp.charAt(i))){
-                if (starting.isEmpty() || (!starting.isEmpty() && starting.pop() != complement(exp.charAt(i)))){
+                if(starting.isEmpty()){
                     spaces = i;
                     wrongSign = exp.charAt(i);
                     extra = true;
                     break;
-                }
-                char temp = closing.pop();
-                if(temp != exp.charAt(i))
-                {   
+                }else if(exp.charAt(i)!= closing.peek()){
                     spaces = i;
-                    wrongSign = temp;
+                    boolean miss = false;
+                    while(!starting.isEmpty()){
+                        char temp = starting.pop();
+                        if(temp == complement(exp.charAt(i))){
+                            miss = true;
+                            missing = true;
+                            wrongSign = closing.pop();
+                            break;
+                        }
+                    }
+                    if(!miss){
+                        extra = true;
+                        wrongSign = exp.charAt(i);
+                    }
+                    break;
+                }else if(!starting.isEmpty() && i == exp.length()-1){
+                    spaces = exp.length()-1;
                     missing = true;
+                    wrongSign = complement(starting.pop());
                     break;
                 }else{
+                    closing.pop();
                     starting.pop();
-                }
-            }else if(i == exp.length()-1 && !closing.isEmpty()){
-                if(exp.charAt(i) != closing.peek()){
-                    spaces = i;
-                    wrongSign = closing.peek();
-                    missing = true;
-                    break;
                 }
             }
             
-        }
-        if(!starting.isEmpty()){
-            spaces = exp.length()-1;
-            missing = true;
-            wrongSign = complement(starting.pop());
         }
         System.out.println(exp);
         if(missing){
