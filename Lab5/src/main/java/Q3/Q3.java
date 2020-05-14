@@ -21,7 +21,8 @@ public class Q3 {
         int current = 0;
         int[] arr = new int[n];
         int solution =0;
-        while (true){
+        boolean valid = false;
+        while (true) {
             while (current < n) {
                 if (check(arr, stack, current)) {
                     stack.push(current);
@@ -36,17 +37,13 @@ public class Q3 {
                 display(arr);
                 solution++;
             }
-
+            
+            //failed to find solutions
             if (stack.isEmpty()) {
                 break;
             }
-
-            if (stack.peek() == n) {
-                stack.pop();
-            }
-
-            current = stack.pop() + 1;
             
+            current = stack.pop() + 1; //backtrack
         }
         System.out.println("Number of solutions: "+ solution);
     }
@@ -120,10 +117,10 @@ public class Q3 {
         return true;
     }*/
     
-    private static boolean check(int arr[], Stack<Integer> s, int currentPosition) {
+    private static boolean check(int arr[], Stack<Integer> s, int current) {
         int size = s.getSize();
         for (int i = 0; i < size; i++) {
-            if (arr[i] == currentPosition || Math.abs(currentPosition - arr[i]) == s.getSize() - i) {
+            if (arr[i] == current || Math.abs(current - arr[i]) == s.getSize() - i) {
                 return false;
             }
         }
