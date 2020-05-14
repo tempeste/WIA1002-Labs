@@ -21,7 +21,6 @@ public class Q3 {
         int current = 0;
         int[] arr = new int[n];
         int solution =0;
-        boolean valid = false;
         while (true) {
             while (current < n) {
                 if (check(arr, stack, current)) {
@@ -120,7 +119,12 @@ public class Q3 {
     private static boolean check(int arr[], Stack<Integer> s, int current) {
         int size = s.getSize();
         for (int i = 0; i < size; i++) {
-            if (arr[i] == current || Math.abs(current - arr[i]) == s.getSize() - i) {
+            if (arr[i] == current || 
+                    //explanation for part 1:
+                    //we want to make sure that none of the columns are repeated
+                    Math.abs(current - arr[i]) == s.getSize() - i) 
+                //second part is to avoid diagonals
+            { 
                 return false;
             }
         }
