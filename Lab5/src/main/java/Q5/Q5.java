@@ -27,7 +27,42 @@ public class Q5 {
         }catch(FileNotFoundException e){
             System.out.println("File Not Found");
         }
-        
-        
+        String root = " ";
+        Stack<String> stack = new Stack();
+        boolean valid = true;
+        for(int i = 0; i < input.length(); i++){
+            if(input.charAt(i) == '<'){
+                if(root.equals(" ")){
+                    root =  input.substring(i+1, input.indexOf(">"));
+                    stack.push(root);
+                    input = input.substring(input.indexOf(">")+1);
+                    i = 0;
+                }else if(input.charAt(i+1) == '/'){
+                    String str = stack.pop();
+//                    System.out.println("String before breaking: "+ str + " and it's index is "+ i);
+                    String compare = input.substring(i+2, input.indexOf(">"));
+                    if(!str.equals(compare)){
+                        System.out.println("Begin Element : <" + str +"> Invalid ending element : </" + compare + ">");
+                        valid = false;
+                        break;
+                    }
+                    input = input.substring(input.indexOf(">")+1);
+                    i = 0;
+                }else{
+                    String temp =  input.substring(i+1, input.indexOf(">"));
+                    if(temp.equals(root)){
+                        System.out.println("Duplicate root element <"+temp+">");
+                        valid = false;
+                        break;
+                    }
+                    stack.push(temp);
+                    input = input.substring(input.indexOf(">")+1);
+                    i = 0;
+                }
+            }
+        }
+        if(valid){
+            System.out.println("The xml document is valid.");
+        }
     }
 }
