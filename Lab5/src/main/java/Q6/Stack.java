@@ -5,9 +5,6 @@
  */
 package Q6;
 
-
-
-
 /**
  *
  * @author RAVEN
