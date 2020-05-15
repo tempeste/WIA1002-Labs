@@ -15,10 +15,12 @@ import java.util.Scanner;
  */
 public class Maze {
     private char[][] maze;
+    private int[] start = new int[2];
+    private int[] finish = new int[2];
+    private int rows = 0;
+    private int columns = 0;
 
     public Maze(String fileName) {
-        int rows = 0;
-        int columns = 0;
         try{
             Scanner sc = new Scanner(new FileInputStream(fileName));
             while(sc.hasNextLine()){
@@ -32,12 +34,16 @@ public class Maze {
             sc.close();
             maze = new char[rows][columns];
             Scanner sc1 = new Scanner(new FileInputStream(fileName));
-            System.out.println(columns);
             for(int i = 0; i < rows; i++){
                 String input = sc1.nextLine();
                 System.out.println(input);
                 for(int j = 0; j < columns; j++){
                     maze[i][j] = input.charAt(j);
+                    if(input.charAt(j) == 'F'){
+                        finish = new int[]{i,j};
+                    }else if(input.charAt(j) == 'S'){
+                        start = new int[]{i,j};
+                    }
                 }
             }
             sc1.close();
@@ -50,5 +56,23 @@ public class Maze {
     public char[][] getMaze() {
         return maze;
     }
+
+    public int[] getStart() {
+        return start;
+    }
+
+    public int[] getFinish() {
+        return finish;
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public int getColumns() {
+        return columns;
+    }
+    
+    
 
 }

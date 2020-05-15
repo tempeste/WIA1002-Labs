@@ -72,4 +72,17 @@ public class Stack<T> {
         }
         System.out.println(temp); 
     }
+    
+    public boolean search(int[] a){
+        int row = a[0];
+        int col = a[1];
+        ListNode temp = head;
+        while(temp != null){
+            if(((int[]) temp.getData())[0] == row && ((int[]) temp.getData())[1] == col){
+                return true;
+            }
+            temp = temp.getLink();
+        }
+        return false;
+    }
 }
