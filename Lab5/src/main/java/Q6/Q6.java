@@ -39,7 +39,7 @@ public class Q6 {
             open.pop();
             return false;
         }else if(close.search(new int[]{r,c})){ //if encounter visited nodes, backtrack
-            open.pop();  //code is inefficient, recommended to use boolean array to keep track of visits
+            open.pop();  //stack is inefficient, recommended to use boolean array to keep track of visits
             return false;
         }else if(maze[r][c] == 'F' ){ //if reached finish cell, end the function by passing true to parent
             return true;
