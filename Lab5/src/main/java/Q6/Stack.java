@@ -73,7 +73,7 @@ public class Stack<T> {
         System.out.println(temp); 
     }
     
-    public boolean search(int[] a){
+    public boolean search(int[] a){ //in order to backtrack when meeting nodes visited before, I need to search the stack
         int row = a[0];
         int col = a[1];
         ListNode temp = head;

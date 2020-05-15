@@ -21,7 +21,7 @@ public class Maze {
     private int columns = 0;
 
     public Maze(String fileName) {
-        try{
+        try{ //usual file reading stuff + maze generation
             Scanner sc = new Scanner(new FileInputStream(fileName));
             while(sc.hasNextLine()){
                 if(columns == 0){
