@@ -28,6 +28,8 @@ public class Q3 {
         }
         
         //ArrayList to check for duplicate draws
+        //In hindsight, it would be more memory efficient to 
+        //shuffle the deck instead of checking for duplicate draws
         ArrayList<Integer> draws = new ArrayList<>();
         Random rand = new Random();
         Queue<String>p1 = new Queue<>();
