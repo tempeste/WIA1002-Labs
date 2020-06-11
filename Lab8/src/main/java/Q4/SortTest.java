@@ -232,7 +232,7 @@ public class SortTest<T extends Comparable<T>> {
         int left = i*2+1;
         int right = i*2+2;
         if(left < size){
-            if(right < size){ //case where left > parent && right 
+            if(right < size){ //case where left can replace parent
                 if(arr[i].compareTo(arr[left]) > 0 && arr[left].compareTo(arr[right]) < 0 &&orderType == ASCENDING ||
                         arr[i].compareTo(arr[left]) < 0 && arr[left].compareTo(arr[right]) > 0 &&orderType == DESCENDING ){
                     swap(i,left);
@@ -266,7 +266,8 @@ public class SortTest<T extends Comparable<T>> {
            heapSort(size -1, arr, counter+1);
            
         }else{
-            value = arr;
+            value = arr; //swap arrays cause my original heapsorted array is 
+            //in reverse order to the ordertype
         }
     }
 }
